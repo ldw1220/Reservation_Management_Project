@@ -20,11 +20,11 @@
 <link rel="stylesheet" href="./css/custom.css">
 </head>
 
-<body>	
+<body>
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light" id="mainNav">
 		<div class="container px-5">
-			<a class="navbar-brand fw-bold" href="LoginPage.jsp">Sushi-Hon</a>
+			<a class="navbar-brand fw-bold" href="LoginPage.jsp">Restaurant</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				Menu <i class="bi-list"></i>
 			</button>
@@ -42,13 +42,19 @@
 				<div class="col-lg-6">
 					<!-- Mashead text and app badges-->
 					<div class="mb-5 mb-lg-3 text-center text-lg-start">
-							&nbsp;
+						&nbsp;
 						<h3 class="display-1 lh-9 mb-3">안녕하세요</h3>
-						<p class="lead fw-normal text-muted mb-5">스시혼을 이용하시는 고객분들께 항상 감사합니다. 더욱 편리한 이용을 위하여 저희는 효율적인 예약 매니지먼트를 운영하고 있으며 고객분들의 원할한 식사 대접을 제공해드리기 위해 최선을 다 하겠습니다. 감사합니다.</p>
+						<p class="lead fw-normal text-muted mb-5">Restaurant를 이용하시는 고객분들께 항상 감사합니다. 더욱 편리한 이용을 위하여 저희는 효율적인 예약 매니지먼트를 운영하고 있으며 고객분들의 원할한 식사 대접을 제공해드리기 위해 최선을 다 하겠습니다. 감사합니다.</p>
 					</div>
-					<p><i class="far fa-calendar-check"></i> 편리한 예약 시스템</p>
-					<p><i class="fas fa-chalkboard-teacher"></i> 질의 응답 게시판 활성화</p>
-					<p><i class="fab fa-instagram"></i> 식당 이용객 후기 확인</p>
+					<p>
+						<i class="far fa-calendar-check"></i> 편리한 예약 시스템
+					</p>
+					<p>
+						<i class="fas fa-chalkboard-teacher"></i> 질의 응답 게시판 활성화
+					</p>
+					<p>
+						<i class="fab fa-instagram"></i> 식당 이용객 후기 확인
+					</p>
 				</div>
 				<div class="col-lg-6">
 					<!-- 영역 크기 -->
@@ -58,16 +64,21 @@
 							<h3 style="text-align: center;">로그인 화면</h3>
 							<div class="form-group">
 								<label>아이디</label>
-								<input type="email" class="form-control" id="ID" placeholder="ex) gildong@gmail.com">
+								<input type="email" class="form-control" id="ID">
 								<small class="form-text text-muted">아이디는 어떠한 경우에도 공유되지 않습니다.</small>
 							</div>
 							&nbsp;
 							<div class="form-group">
 								<label>비밀번호</label>
-								<input type="password" class="form-control" id="Password" placeholder="Password">
+								<input type="password" class="form-control" id="Password" placeholder="***********">
 							</div>
 							&nbsp;
 							<input type="submit" class="btn btn-primary form-control" value="로그인">
+							&nbsp;
+						</form>
+						<small class="form-text text-muted">아직 회원이 아니십니까 ?</small>
+						<form method="POST" action="Join.jsp">
+								<input class="btn btn-primary form-control" type="submit" value="회원가입">
 						</form>
 					</div>
 				</div>
