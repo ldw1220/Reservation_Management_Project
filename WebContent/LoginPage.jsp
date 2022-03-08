@@ -60,17 +60,17 @@
 					<!-- 영역 크기 -->
 					<!-- 점보트론은 특정 컨텐츠, 정보를 두드러지게 하기 위한 큰 박스 -->
 					<div class="jumbotron" style="padding-top: 20px;">
-						<form method="post" action="loginAction.jsp">
+						<form method="post" action="loginAction">
 							<h3 style="text-align: center;">로그인 화면</h3>
 							<div class="form-group">
 								<label>아이디</label>
-								<input type="email" class="form-control" id="ID">
+								<input type="text" class="form-control" name="m_ID">
 								<small class="form-text text-muted">아이디는 어떠한 경우에도 공유되지 않습니다.</small>
 							</div>
 							&nbsp;
 							<div class="form-group">
 								<label>비밀번호</label>
-								<input type="password" class="form-control" id="Password" placeholder="***********">
+								<input type="password" class="form-control" name="m_PW" placeholder="***********">
 							</div>
 							&nbsp;
 							<input type="submit" class="btn btn-primary form-control" value="로그인">
