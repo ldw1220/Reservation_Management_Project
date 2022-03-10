@@ -70,14 +70,14 @@
 							&nbsp;
 							<div class="form-group">
 								<label>비밀번호</label>
-								<input type="password" class="form-control" name="m_PW" placeholder="***********">
+								<input type="password" class="form-control" name="m_PWD" placeholder="***********">
 							</div>
 							&nbsp;
 							<input type="submit" class="btn btn-primary form-control" value="로그인">
 							&nbsp;
 						</form>
 						<small class="form-text text-muted">아직 회원이 아니십니까 ?</small>
-						<form method="POST" action="Join.jsp">
+						<form method="GET" action="join.jsp">
 								<input class="btn btn-primary form-control" type="submit" value="회원가입">
 						</form>
 					</div>

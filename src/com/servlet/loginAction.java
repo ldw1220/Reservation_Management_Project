@@ -3,12 +3,6 @@ package com.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +18,7 @@ import com.servlet.dto.LoginDTO;
 @WebServlet("/loginAction")
 public class loginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String ADMINISTER = "admin";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -31,19 +26,33 @@ public class loginAction extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		//HttpSession 인터페이스를 이용하여 session객체를 얻는다.
-		//HttpSession session = request.getSession();
+		String m_ID = request.getParameter("m_ID");
+		String m_PWD = request.getParameter("m_PWD");
 		
+		LoginDTO loginDTO = new LoginDTO(m_ID, m_PWD);
 		LoginDAO loginDAO = new LoginDAO();
-		ArrayList<LoginDTO> list = loginDAO.select();
 		
-		for (int i=0; i<list.size(); i++) {
-			LoginDTO dto = list.get(i);
-			String m_ID = dto.getM_ID();
-			String m_Phone = dto.getM_Phone();
-			
-			out.println("사용자 이름 : " + m_ID + ", ");
-			out.println("사용자 전화번호 : " + m_Phone + "<br>");
+		LoginDTO info = loginDAO.login(loginDTO);
+		
+		if (info != null) {
+//			System.out.println("로그인 성공");
+//			System.out.println(info.getM_ID());
+//			System.out.println(info.getM_PWD());
+			if (info.getM_ID().equals(ADMINISTER)) {
+				System.out.println("관리자 로그인 성공");
+				HttpSession session = request.getSession();
+				session.setAttribute("info", info);
+				response.sendRedirect("manager.jsp");
+			} else {
+				System.out.println("사용자 로그인 성공");
+				HttpSession session = request.getSession();
+				session.setAttribute("info", info);
+				response.sendRedirect("home.jsp");
+			}
+		} 
+		else {
+			System.out.println("로그인 실패");
+			response.sendRedirect("loginpage.jsp");
 		}
 	}
 

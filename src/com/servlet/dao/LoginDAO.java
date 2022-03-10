@@ -1,7 +1,6 @@
 package com.servlet.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -14,6 +13,11 @@ import com.servlet.dto.LoginDTO;
 public class LoginDAO {
 	//커넥션 풀을 담기 위한 DataSource 타입의 변수를 선언
 	DataSource dataSource;
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet res = null;
+	//ArrayList<LoginDTO> member = null;
     
     public LoginDAO() {
     	try {
@@ -26,40 +30,27 @@ public class LoginDAO {
     	}
     }
     
-    public ArrayList<LoginDTO> select() {
-    	
-    	ArrayList<LoginDTO> list = new ArrayList<LoginDTO>();
-    	
-    	Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet res = null;
-    	
-		try {
-			// dataSource로 부터 커넥션을 가져온다.
-			con = dataSource.getConnection();
-			String sql = "SELECT * FROM member";
+    public LoginDTO login(LoginDTO dto) {
+    	LoginDTO info = null;
+    	try {
+    		con = dataSource.getConnection();
+    		String sql = "SELECT m_ID, m_PWD FROM member Where m_ID=? and m_PWD=?";
 			pstmt = con.prepareStatement(sql);
-			res = pstmt.executeQuery(sql);
+			pstmt.setString(1, dto.getM_ID());
+			pstmt.setString(2, dto.getM_PWD());
+			
+			res = pstmt.executeQuery();
 			
 			while (res.next()) {
-				String m_ID = res.getString("m_ID");
-				String m_Phone = res.getString("m_Phone");
+				String m_ID = res.getString(1);
+				String m_PWD = res.getString(2);
 				
-				LoginDTO loginDTO = new LoginDTO(m_ID, m_Phone);
-				list.add(loginDTO);
+				info = new LoginDTO(m_ID, m_PWD);
 			}
 			
-		} catch (Exception e) {
+    	} catch (Exception e) {
     		e.printStackTrace();
-    	} finally {
-    		try {
-				if (res != null) res.close();
-				if (pstmt != null) pstmt.close();
-				if (con != null) con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-    	}
-    	return list;
-    } 
+    	} 
+    	return info;
+    }
 }
