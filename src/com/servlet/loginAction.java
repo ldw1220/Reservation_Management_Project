@@ -35,24 +35,23 @@ public class loginAction extends HttpServlet {
 		LoginDTO info = loginDAO.login(loginDTO);
 		
 		if (info != null) {
-//			System.out.println("로그인 성공");
-//			System.out.println(info.getM_ID());
-//			System.out.println(info.getM_PWD());
 			if (info.getM_ID().equals(ADMINISTER)) {
 				System.out.println("관리자 로그인 성공");
 				HttpSession session = request.getSession();
-				session.setAttribute("info", info);
+				session.setAttribute("info", info.getM_ID());
 				response.sendRedirect("manager.jsp");
 			} else {
 				System.out.println("사용자 로그인 성공");
 				HttpSession session = request.getSession();
-				session.setAttribute("info", info);
+				session.setAttribute("info", info.getM_ID());
 				response.sendRedirect("home.jsp");
 			}
 		} 
 		else {
 			System.out.println("로그인 실패");
-			response.sendRedirect("loginpage.jsp");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script>alert('존재하지 않는 아이디거나 계정 정보가 틀렸습니다.'); location.href='loginpage.jsp';</script>");
+			writer.close();
 		}
 	}
 
