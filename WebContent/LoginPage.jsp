@@ -21,7 +21,6 @@
 </head>
 
 <body>
-	
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light" id="mainNav">
 		<div class="container px-5">
