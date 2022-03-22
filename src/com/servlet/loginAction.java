@@ -24,7 +24,7 @@ public class loginAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
 		
 		String m_ID = request.getParameter("m_ID");
 		String m_PWD = request.getParameter("m_PWD");
@@ -54,9 +54,6 @@ public class loginAction extends HttpServlet {
 			writer.close();
 		}
 	}
-
-	
-	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

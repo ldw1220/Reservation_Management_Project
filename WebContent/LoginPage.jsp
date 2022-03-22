@@ -64,7 +64,7 @@
 							<h3 style="text-align: center;">로그인 화면</h3>
 							<div class="form-group">
 								<label>아이디</label>
-								<input type="text" class="form-control" name="m_ID">
+								<input type="text" class="form-control" name="m_ID" placeholder="아이디를 입력하세요.">
 								<small class="form-text text-muted">아이디는 어떠한 경우에도 공유되지 않습니다.</small>
 							</div>
 							&nbsp;
